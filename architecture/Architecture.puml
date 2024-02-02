@@ -1,0 +1,58 @@
+@startuml ActiveActiveCache_Architecture
+
+' Amazon page: https://plantuml.biz/
+
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v16.0/dist
+!include AWSPuml/AWSCommon.puml
+
+!include AWSPuml/ApplicationIntegration/SimpleNotificationServiceTopic.puml
+!include AWSPuml/ApplicationIntegration/SimpleQueueServiceQueue.puml
+!include AWSPuml/ApplicationIntegration/APIGateway.puml
+
+!include AWSPuml/Groups/Region.puml
+!include AWSPuml/Groups/AWSCloud.puml
+
+!include AWSPuml/Compute/LambdaLambdaFunction.puml
+
+!include AWSPuml/Database/ElastiCacheElastiCacheforRedis.puml
+
+left to right direction
+
+APIGateway(loader_api, "Loader", "API Gateway")
+LambdaLambdaFunction(loader_lambda, "Loader", "Lambda")
+APIGateway(repeater_api, "Repeater API", "API Gateway")
+LambdaLambdaFunction(repeater_lambda, "Repeater", "Lambda")
+
+RegionGroup(us-east-1, "us-east-1") {
+    SimpleNotificationServiceTopic(sns, "SNS", "SNS")
+    SimpleQueueServiceQueue(eastQueue, "us-east-1 SQS", "SQS")
+    SimpleQueueServiceQueue(eastDLQ, "us-east-1 Dead-letter Queue", "SQS")
+    LambdaLambdaFunction(eastCacher, "us-east-1 Lambda Cacher", "Lambda")
+    ElastiCacheElastiCacheforRedis(eastCache, "us-east-1 Cache", "Redis")
+}
+
+RegionGroup(us-west-2, "us-west-2") {
+    SimpleQueueServiceQueue(westQueue, "us-west-2 SQS", "SQS")
+    SimpleQueueServiceQueue(westDLQ, "us-east-1 Dead-letter Queue", "SQS")
+    LambdaLambdaFunction(westCacher, "us-west-2 Lambda Cacher", "Lambda")
+    ElastiCacheElastiCacheforRedis(westCache, "us-west-2 Cache", "Redis")
+}
+
+loader_api --> loader_lambda
+loader_lambda --> sns
+repeater_api --> repeater_lambda
+repeater_lambda --> loader_api
+sns --> eastQueue
+sns --> westQueue
+
+
+sns --> eastDLQ
+eastQueue --> eastCacher
+eastQueue --> eastDLQ
+eastCacher --> eastCache
+
+westQueue --> westCacher
+westQueue --> westDLQ
+westCacher --> westCache
+
+@enduml

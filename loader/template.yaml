@@ -1,0 +1,62 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  loader
+
+  Sends transactions to SNS
+  
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+
+Parameters:
+  TopicARN:
+    Type: String
+    Description: Topic ARN
+
+Resources:
+  LoaderFunction:
+    Type: AWS::Serverless::Function 
+    Properties:
+      CodeUri: loader/
+      Handler: app.send
+      Runtime: nodejs18.x
+      Timeout: 300
+      AutoPublishAlias: live
+      Tracing: Active
+      Architectures:
+        - x86_64
+      Events:
+        HelloWorld:
+          Type: Api 
+          Properties:
+            Path: /send
+            Method: get
+      Policies:
+      - AmazonSNSFullAccess
+      VpcConfig:
+        SecurityGroupIds:
+        - !ImportValue 'SecurityGroupId'
+        SubnetIds:
+        - !ImportValue 'CardAuthPrivateSubnet1'
+      Environment:
+        Variables:
+          TOPIC_ARN: !Ref TopicARN
+
+    Metadata: # Manage esbuild properties
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: "es2020"
+        Sourcemap: true
+        EntryPoints: 
+        - app.ts
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  AuthLoaderApi:
+    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/send/"

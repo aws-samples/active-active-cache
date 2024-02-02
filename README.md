@@ -1,17 +1,8 @@
-## My Project
+# Active-Active Cache
 
-TODO: Fill this README out!
+This solution implements an active-active cache across 2 AWS regions, using ElastiCache for Redis.This solution is automated with CDK and SAM. I described even the architecture below as code! It uses SNS and SQS to increase resilience.
 
-Be sure to:
+## Architecture
 
-* Change the title in this README
-* Edit your repository description on GitHub
-
-## Security
-
-See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
-
-## License
-
-This project is licensed under the Apache-2.0 License.
+![image](architecture/ActiveActiveCache_Architecture.png)
 

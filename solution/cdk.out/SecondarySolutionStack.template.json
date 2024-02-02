@@ -1,0 +1,927 @@
+{
+ "Resources": {
+  "cache08DE9BE4": {
+   "Type": "AWS::EC2::VPC",
+   "Properties": {
+    "CidrBlock": "10.0.0.0/16",
+    "EnableDnsHostnames": true,
+    "EnableDnsSupport": true,
+    "InstanceTenancy": "default",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SecondarySolutionStack/cache"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/Resource"
+   }
+  },
+  "cachePublicSubnet1Subnet032323E2": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.0.0/18",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "SecondarySolutionStack/cache/PublicSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "cache08DE9BE4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/PublicSubnet1/Subnet"
+   }
+  },
+  "cachePublicSubnet1RouteTable9421B1E8": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SecondarySolutionStack/cache/PublicSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "cache08DE9BE4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/PublicSubnet1/RouteTable"
+   }
+  },
+  "cachePublicSubnet1RouteTableAssociation89150917": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "cachePublicSubnet1RouteTable9421B1E8"
+    },
+    "SubnetId": {
+     "Ref": "cachePublicSubnet1Subnet032323E2"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/PublicSubnet1/RouteTableAssociation"
+   }
+  },
+  "cachePublicSubnet1DefaultRouteEC6C0182": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "cacheIGW6B4784AE"
+    },
+    "RouteTableId": {
+     "Ref": "cachePublicSubnet1RouteTable9421B1E8"
+    }
+   },
+   "DependsOn": [
+    "cacheVPCGWD533262B"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/PublicSubnet1/DefaultRoute"
+   }
+  },
+  "cachePublicSubnet1EIP74722680": {
+   "Type": "AWS::EC2::EIP",
+   "Properties": {
+    "Domain": "vpc",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SecondarySolutionStack/cache/PublicSubnet1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/PublicSubnet1/EIP"
+   }
+  },
+  "cachePublicSubnet1NATGateway9A4B92C3": {
+   "Type": "AWS::EC2::NatGateway",
+   "Properties": {
+    "AllocationId": {
+     "Fn::GetAtt": [
+      "cachePublicSubnet1EIP74722680",
+      "AllocationId"
+     ]
+    },
+    "SubnetId": {
+     "Ref": "cachePublicSubnet1Subnet032323E2"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SecondarySolutionStack/cache/PublicSubnet1"
+     }
+    ]
+   },
+   "DependsOn": [
+    "cachePublicSubnet1DefaultRouteEC6C0182",
+    "cachePublicSubnet1RouteTableAssociation89150917"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/PublicSubnet1/NATGateway"
+   }
+  },
+  "cachePublicSubnet2SubnetC500B3AC": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      1,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.64.0/18",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "SecondarySolutionStack/cache/PublicSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "cache08DE9BE4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/PublicSubnet2/Subnet"
+   }
+  },
+  "cachePublicSubnet2RouteTableD0B99D6E": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SecondarySolutionStack/cache/PublicSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "cache08DE9BE4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/PublicSubnet2/RouteTable"
+   }
+  },
+  "cachePublicSubnet2RouteTableAssociationF8F60EF2": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "cachePublicSubnet2RouteTableD0B99D6E"
+    },
+    "SubnetId": {
+     "Ref": "cachePublicSubnet2SubnetC500B3AC"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/PublicSubnet2/RouteTableAssociation"
+   }
+  },
+  "cachePublicSubnet2DefaultRoute251EBF0C": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "cacheIGW6B4784AE"
+    },
+    "RouteTableId": {
+     "Ref": "cachePublicSubnet2RouteTableD0B99D6E"
+    }
+   },
+   "DependsOn": [
+    "cacheVPCGWD533262B"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/PublicSubnet2/DefaultRoute"
+   }
+  },
+  "cachePublicSubnet2EIP610E2071": {
+   "Type": "AWS::EC2::EIP",
+   "Properties": {
+    "Domain": "vpc",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SecondarySolutionStack/cache/PublicSubnet2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/PublicSubnet2/EIP"
+   }
+  },
+  "cachePublicSubnet2NATGatewayEAFA44BB": {
+   "Type": "AWS::EC2::NatGateway",
+   "Properties": {
+    "AllocationId": {
+     "Fn::GetAtt": [
+      "cachePublicSubnet2EIP610E2071",
+      "AllocationId"
+     ]
+    },
+    "SubnetId": {
+     "Ref": "cachePublicSubnet2SubnetC500B3AC"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SecondarySolutionStack/cache/PublicSubnet2"
+     }
+    ]
+   },
+   "DependsOn": [
+    "cachePublicSubnet2DefaultRoute251EBF0C",
+    "cachePublicSubnet2RouteTableAssociationF8F60EF2"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/PublicSubnet2/NATGateway"
+   }
+  },
+  "cachePrivateSubnet1SubnetFD3C77BF": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.128.0/18",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Private"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "SecondarySolutionStack/cache/PrivateSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "cache08DE9BE4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/PrivateSubnet1/Subnet"
+   }
+  },
+  "cachePrivateSubnet1RouteTable2978E3D3": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SecondarySolutionStack/cache/PrivateSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "cache08DE9BE4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/PrivateSubnet1/RouteTable"
+   }
+  },
+  "cachePrivateSubnet1RouteTableAssociationB55ECC22": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "cachePrivateSubnet1RouteTable2978E3D3"
+    },
+    "SubnetId": {
+     "Ref": "cachePrivateSubnet1SubnetFD3C77BF"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/PrivateSubnet1/RouteTableAssociation"
+   }
+  },
+  "cachePrivateSubnet1DefaultRouteA8B9AE3A": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "cachePublicSubnet1NATGateway9A4B92C3"
+    },
+    "RouteTableId": {
+     "Ref": "cachePrivateSubnet1RouteTable2978E3D3"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/PrivateSubnet1/DefaultRoute"
+   }
+  },
+  "cachePrivateSubnet2SubnetCCCD7FA2": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      1,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.192.0/18",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Private"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "SecondarySolutionStack/cache/PrivateSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "cache08DE9BE4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/PrivateSubnet2/Subnet"
+   }
+  },
+  "cachePrivateSubnet2RouteTableE74A8DE6": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SecondarySolutionStack/cache/PrivateSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "cache08DE9BE4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/PrivateSubnet2/RouteTable"
+   }
+  },
+  "cachePrivateSubnet2RouteTableAssociation51C64DCE": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "cachePrivateSubnet2RouteTableE74A8DE6"
+    },
+    "SubnetId": {
+     "Ref": "cachePrivateSubnet2SubnetCCCD7FA2"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/PrivateSubnet2/RouteTableAssociation"
+   }
+  },
+  "cachePrivateSubnet2DefaultRouteA4ED4C2B": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "cachePublicSubnet2NATGatewayEAFA44BB"
+    },
+    "RouteTableId": {
+     "Ref": "cachePrivateSubnet2RouteTableE74A8DE6"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/PrivateSubnet2/DefaultRoute"
+   }
+  },
+  "cacheIGW6B4784AE": {
+   "Type": "AWS::EC2::InternetGateway",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "SecondarySolutionStack/cache"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/IGW"
+   }
+  },
+  "cacheVPCGWD533262B": {
+   "Type": "AWS::EC2::VPCGatewayAttachment",
+   "Properties": {
+    "InternetGatewayId": {
+     "Ref": "cacheIGW6B4784AE"
+    },
+    "VpcId": {
+     "Ref": "cache08DE9BE4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/VPCGW"
+   }
+  },
+  "cacheRestrictDefaultSecurityGroupCustomResourceDCA19BD8": {
+   "Type": "Custom::VpcRestrictDefaultSG",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomVpcRestrictDefaultSGCustomResourceProviderHandlerDC833E5E",
+      "Arn"
+     ]
+    },
+    "DefaultSecurityGroupId": {
+     "Fn::GetAtt": [
+      "cache08DE9BE4",
+      "DefaultSecurityGroup"
+     ]
+    },
+    "Account": {
+     "Ref": "AWS::AccountId"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/cache/RestrictDefaultSecurityGroupCustomResource/Default"
+   }
+  },
+  "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Version": "2012-10-17",
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ]
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+     }
+    ],
+    "Policies": [
+     {
+      "PolicyName": "Inline",
+      "PolicyDocument": {
+       "Version": "2012-10-17",
+       "Statement": [
+        {
+         "Effect": "Allow",
+         "Action": [
+          "ec2:AuthorizeSecurityGroupIngress",
+          "ec2:AuthorizeSecurityGroupEgress",
+          "ec2:RevokeSecurityGroupIngress",
+          "ec2:RevokeSecurityGroupEgress"
+         ],
+         "Resource": [
+          {
+           "Fn::Join": [
+            "",
+            [
+             "arn:aws:ec2:us-east-2:",
+             {
+              "Ref": "AWS::AccountId"
+             },
+             ":security-group/",
+             {
+              "Fn::GetAtt": [
+               "cache08DE9BE4",
+               "DefaultSecurityGroup"
+              ]
+             }
+            ]
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Role"
+   }
+  },
+  "CustomVpcRestrictDefaultSGCustomResourceProviderHandlerDC833E5E": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-2"
+     },
+     "S3Key": "7f18a11296f35510ee16538afec983ed6312e12afbf81b777089a9f8e34e2474.zip"
+    },
+    "Timeout": 900,
+    "MemorySize": 128,
+    "Handler": "__entrypoint__.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Description": "Lambda function for removing all inbound/outbound rules from the VPC default security group"
+   },
+   "DependsOn": [
+    "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Handler",
+    "aws:asset:path": "asset.7f18a11296f35510ee16538afec983ed6312e12afbf81b777089a9f8e34e2474",
+    "aws:asset:property": "Code"
+   }
+  },
+  "DLQ581697C4": {
+   "Type": "AWS::SQS::Queue",
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/DLQ/Resource"
+   }
+  },
+  "DLQAlarm77626DBA": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+    "Dimensions": [
+     {
+      "Name": "QueueName",
+      "Value": {
+       "Fn::GetAtt": [
+        "DLQ581697C4",
+        "QueueName"
+       ]
+      }
+     }
+    ],
+    "EvaluationPeriods": 1,
+    "MetricName": "ApproximateNumberOfMessagesVisible",
+    "Namespace": "AWS/SQS",
+    "Period": 300,
+    "Statistic": "Maximum",
+    "Threshold": 1
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/DLQAlarm/Resource"
+   }
+  },
+  "Queue4A7E3555": {
+   "Type": "AWS::SQS::Queue",
+   "Properties": {
+    "RedrivePolicy": {
+     "deadLetterTargetArn": {
+      "Fn::GetAtt": [
+       "DLQ581697C4",
+       "Arn"
+      ]
+     },
+     "maxReceiveCount": 1
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/Queue/Resource"
+   }
+  },
+  "SNS03120D65": {
+   "Type": "Custom::AWS",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "AWS679f53fac002430cb0da5b7982bd22872D164C4C",
+      "Arn"
+     ]
+    },
+    "Create": "{\"service\":\"SSM\",\"action\":\"getParameter\",\"parameters\":{\"Name\":\"SNS\"},\"region\":\"us-west-2\",\"physicalResourceId\":{\"id\":\"1702310921290\"}}",
+    "Update": "{\"service\":\"SSM\",\"action\":\"getParameter\",\"parameters\":{\"Name\":\"SNS\"},\"region\":\"us-west-2\",\"physicalResourceId\":{\"id\":\"1702310921290\"}}",
+    "InstallLatestAwsSdk": false
+   },
+   "DependsOn": [
+    "SNSCustomResourcePolicy1A70628D"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/SNS/Resource/Default"
+   }
+  },
+  "SNSCustomResourcePolicy1A70628D": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "ssm:GetParameter",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:aws:ssm:us-west-2:",
+          {
+           "Ref": "AWS::AccountId"
+          },
+          ":parameter/SNS"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "SNSCustomResourcePolicy1A70628D",
+    "Roles": [
+     {
+      "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/SNS/CustomResourcePolicy/Resource"
+   }
+  },
+  "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/AWS679f53fac002430cb0da5b7982bd2287/ServiceRole/Resource"
+   }
+  },
+  "AWS679f53fac002430cb0da5b7982bd22872D164C4C": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-2"
+     },
+     "S3Key": "17c16a3854838fd3ff4bda08146122a6701f33b9c86ae17f415ad0dc47a97544.zip"
+    },
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 120
+   },
+   "DependsOn": [
+    "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/AWS679f53fac002430cb0da5b7982bd2287/Resource",
+    "aws:asset:path": "asset.17c16a3854838fd3ff4bda08146122a6701f33b9c86ae17f415ad0dc47a97544",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "ElastiCacheSubnetGroup": {
+   "Type": "AWS::ElastiCache::SubnetGroup",
+   "Properties": {
+    "CacheSubnetGroupName": "SecondaryElastiCacheSubnetGroup",
+    "Description": "ElastiCache Subnet Group",
+    "SubnetIds": [
+     {
+      "Ref": "cachePrivateSubnet1SubnetFD3C77BF"
+     },
+     {
+      "Ref": "cachePrivateSubnet2SubnetCCCD7FA2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/ElastiCacheSubnetGroup"
+   }
+  },
+  "SecondaryElastiCacheSecurityGroup43D6A83B": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "ElastiCache Security Group",
+    "GroupName": "SecondaryElastiCacheSecurityGroup",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Redis port",
+      "FromPort": 6379,
+      "IpProtocol": "tcp",
+      "ToPort": 6379
+     }
+    ],
+    "VpcId": {
+     "Ref": "cache08DE9BE4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/SecondaryElastiCacheSecurityGroup/Resource"
+   }
+  },
+  "ReplicationGroup": {
+   "Type": "AWS::ElastiCache::ReplicationGroup",
+   "Properties": {
+    "AutomaticFailoverEnabled": false,
+    "CacheNodeType": "cache.m7g.large",
+    "CacheSubnetGroupName": {
+     "Ref": "ElastiCacheSubnetGroup"
+    },
+    "Engine": "redis",
+    "NumCacheClusters": 1,
+    "ReplicationGroupDescription": "Elastic Cache Replication Group",
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "SecondaryElastiCacheSecurityGroup43D6A83B",
+       "GroupId"
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/ReplicationGroup"
+   }
+  },
+  "SQSParameter75BC1BCA": {
+   "Type": "AWS::SSM::Parameter",
+   "Properties": {
+    "Description": "The SQS ARN",
+    "Name": "SecondarySQS",
+    "Type": "String",
+    "Value": {
+     "Fn::GetAtt": [
+      "Queue4A7E3555",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/SQSParameter/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/21S0W7CMAz8Ft5DBuwLCtoQL1tXJl6Rm3oQaJMucahQ1X+fGyidtKkPPjvW5e7ShZzPZ3I+gcZPVXGeljqX7ZZAnQWP9i2qhWx3tRKrL7NLVyINeanVNuQGqZ+NKLOB8BPyEsf5OEu8t0oDaWseyz142aR9eQNaA2EDV5E6fWE4Em8MoWM8LNyU3LuEWOuxQkNiiyo4Tde1s6GOGn4POuG/vWw/AoZ4cQSdUKUNRQOkjrJNSnBVfxZBJ0qo8gI4Dm0OJZI1r8Go6OABeHnAndBQyTa1nE8UeUeZvSXSVxbxvAfvkbxM+sK9XAZ1RlqCR4EleNKKHaFsHyk+DGVYM2UMcfDkq/65HCtMwUGFHFW8e2i6TmTobXCKRQRPthrbnvDfo9TZiy6YKWrkv+HA/ELFnb27L7GDxv+lfA9UB+qEsQXKk3+6LGaSv8nJaz11wZCuUGa3+gMdssdTfQIAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "SecondarySolutionStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "CardAuthPrivateSubnet1": {
+   "Value": {
+    "Ref": "cachePrivateSubnet1SubnetFD3C77BF"
+   },
+   "Export": {
+    "Name": "CardAuthPrivateSubnet1"
+   }
+  },
+  "SecurityGroupId": {
+   "Value": {
+    "Fn::GetAtt": [
+     "SecondaryElastiCacheSecurityGroup43D6A83B",
+     "GroupId"
+    ]
+   },
+   "Export": {
+    "Name": "SecurityGroupId"
+   }
+  },
+  "QueueARN": {
+   "Value": {
+    "Fn::GetAtt": [
+     "Queue4A7E3555",
+     "Arn"
+    ]
+   },
+   "Export": {
+    "Name": "QueueARN"
+   }
+  },
+  "QueueURL": {
+   "Value": {
+    "Ref": "Queue4A7E3555"
+   },
+   "Export": {
+    "Name": "QueueURL"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

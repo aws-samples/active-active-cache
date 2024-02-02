@@ -1,0 +1,673 @@
+{
+  "version": "35.0.0",
+  "artifacts": {
+    "PrimarySolutionStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "PrimarySolutionStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "PrimarySolutionStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/us-west-2",
+      "properties": {
+        "templateFile": "PrimarySolutionStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-us-west-2",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-us-west-2",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-us-west-2/4e3d90ad2cf25036354f01eb4465f15fa083f31e9e04d3190b131a6cb4a7476a.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "PrimarySolutionStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-us-west-2",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        },
+        "stackName": "Primary"
+      },
+      "dependencies": [
+        "PrimarySolutionStack.assets"
+      ],
+      "metadata": {
+        "/PrimarySolutionStack/cache/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cache08DE9BE4"
+          }
+        ],
+        "/PrimarySolutionStack/cache/PublicSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet1Subnet032323E2"
+          }
+        ],
+        "/PrimarySolutionStack/cache/PublicSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet1RouteTable9421B1E8"
+          }
+        ],
+        "/PrimarySolutionStack/cache/PublicSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet1RouteTableAssociation89150917"
+          }
+        ],
+        "/PrimarySolutionStack/cache/PublicSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet1DefaultRouteEC6C0182"
+          }
+        ],
+        "/PrimarySolutionStack/cache/PublicSubnet1/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet1EIP74722680"
+          }
+        ],
+        "/PrimarySolutionStack/cache/PublicSubnet1/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet1NATGateway9A4B92C3"
+          }
+        ],
+        "/PrimarySolutionStack/cache/PublicSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet2SubnetC500B3AC"
+          }
+        ],
+        "/PrimarySolutionStack/cache/PublicSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet2RouteTableD0B99D6E"
+          }
+        ],
+        "/PrimarySolutionStack/cache/PublicSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet2RouteTableAssociationF8F60EF2"
+          }
+        ],
+        "/PrimarySolutionStack/cache/PublicSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet2DefaultRoute251EBF0C"
+          }
+        ],
+        "/PrimarySolutionStack/cache/PublicSubnet2/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet2EIP610E2071"
+          }
+        ],
+        "/PrimarySolutionStack/cache/PublicSubnet2/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet2NATGatewayEAFA44BB"
+          }
+        ],
+        "/PrimarySolutionStack/cache/PrivateSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePrivateSubnet1SubnetFD3C77BF"
+          }
+        ],
+        "/PrimarySolutionStack/cache/PrivateSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePrivateSubnet1RouteTable2978E3D3"
+          }
+        ],
+        "/PrimarySolutionStack/cache/PrivateSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePrivateSubnet1RouteTableAssociationB55ECC22"
+          }
+        ],
+        "/PrimarySolutionStack/cache/PrivateSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePrivateSubnet1DefaultRouteA8B9AE3A"
+          }
+        ],
+        "/PrimarySolutionStack/cache/PrivateSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePrivateSubnet2SubnetCCCD7FA2"
+          }
+        ],
+        "/PrimarySolutionStack/cache/PrivateSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePrivateSubnet2RouteTableE74A8DE6"
+          }
+        ],
+        "/PrimarySolutionStack/cache/PrivateSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePrivateSubnet2RouteTableAssociation51C64DCE"
+          }
+        ],
+        "/PrimarySolutionStack/cache/PrivateSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePrivateSubnet2DefaultRouteA4ED4C2B"
+          }
+        ],
+        "/PrimarySolutionStack/cache/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cacheIGW6B4784AE"
+          }
+        ],
+        "/PrimarySolutionStack/cache/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cacheVPCGWD533262B"
+          }
+        ],
+        "/PrimarySolutionStack/cache/RestrictDefaultSecurityGroupCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cacheRestrictDefaultSecurityGroupCustomResourceDCA19BD8"
+          }
+        ],
+        "/PrimarySolutionStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0"
+          }
+        ],
+        "/PrimarySolutionStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Handler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVpcRestrictDefaultSGCustomResourceProviderHandlerDC833E5E"
+          }
+        ],
+        "/PrimarySolutionStack/DLQ/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DLQ581697C4"
+          }
+        ],
+        "/PrimarySolutionStack/DLQ/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DLQPolicyC8FA9269"
+          }
+        ],
+        "/PrimarySolutionStack/DLQAlarm/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DLQAlarm77626DBA"
+          }
+        ],
+        "/PrimarySolutionStack/Queue/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Queue4A7E3555"
+          }
+        ],
+        "/PrimarySolutionStack/Queue/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QueuePolicy25439813"
+          }
+        ],
+        "/PrimarySolutionStack/Queue/PrimarySolutionStackMessage49877ADA/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QueuePrimarySolutionStackMessage49877ADAC0B59FFC"
+          }
+        ],
+        "/PrimarySolutionStack/SNS/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SNS03120D65"
+          }
+        ],
+        "/PrimarySolutionStack/SNS/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SNSCustomResourcePolicy1A70628D"
+          }
+        ],
+        "/PrimarySolutionStack/AWS679f53fac002430cb0da5b7982bd2287/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+          }
+        ],
+        "/PrimarySolutionStack/AWS679f53fac002430cb0da5b7982bd2287/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWS679f53fac002430cb0da5b7982bd22872D164C4C"
+          }
+        ],
+        "/PrimarySolutionStack/Message/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Message251322C6"
+          }
+        ],
+        "/PrimarySolutionStack/SecondarySQS/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SecondarySQSE48AAF76"
+          }
+        ],
+        "/PrimarySolutionStack/SecondarySQS/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SecondarySQSCustomResourcePolicyE636B157"
+          }
+        ],
+        "/PrimarySolutionStack/SecondaryQueue/PrimarySolutionStackMessage49877ADA/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SecondaryQueuePrimarySolutionStackMessage49877ADAC5DB355E"
+          }
+        ],
+        "/PrimarySolutionStack/SNSParameter/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SNSParameter385110CB"
+          }
+        ],
+        "/PrimarySolutionStack/Dash/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DashCCD7F836"
+          }
+        ],
+        "/PrimarySolutionStack/TopicARN": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TopicARN"
+          }
+        ],
+        "/PrimarySolutionStack/ElastiCacheSubnetGroup": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ElastiCacheSubnetGroup"
+          }
+        ],
+        "/PrimarySolutionStack/PrimaryElastiCacheSecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PrimaryElastiCacheSecurityGroupC8563524"
+          }
+        ],
+        "/PrimarySolutionStack/ReplicationGroup": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ReplicationGroup"
+          }
+        ],
+        "/PrimarySolutionStack/CardAuthPrivateSubnet1": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CardAuthPrivateSubnet1"
+          }
+        ],
+        "/PrimarySolutionStack/SecurityGroupId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SecurityGroupId"
+          }
+        ],
+        "/PrimarySolutionStack/QueueARN": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QueueARN"
+          }
+        ],
+        "/PrimarySolutionStack/QueueURL": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QueueURL"
+          }
+        ],
+        "/PrimarySolutionStack/SQSParameter/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SQSParameter75BC1BCA"
+          }
+        ],
+        "/PrimarySolutionStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/PrimarySolutionStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/PrimarySolutionStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "PrimarySolutionStack"
+    },
+    "SecondarySolutionStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "SecondarySolutionStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "SecondarySolutionStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/us-east-2",
+      "properties": {
+        "templateFile": "SecondarySolutionStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-us-east-2",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-us-east-2",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-us-east-2/357b11f270b1a258a3cc061fa03eba67f26a8bcee2bc3de4e0de85f29aeabf6b.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "SecondarySolutionStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-us-east-2",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        },
+        "stackName": "Secondary"
+      },
+      "dependencies": [
+        "SecondarySolutionStack.assets"
+      ],
+      "metadata": {
+        "/SecondarySolutionStack/cache/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cache08DE9BE4"
+          }
+        ],
+        "/SecondarySolutionStack/cache/PublicSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet1Subnet032323E2"
+          }
+        ],
+        "/SecondarySolutionStack/cache/PublicSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet1RouteTable9421B1E8"
+          }
+        ],
+        "/SecondarySolutionStack/cache/PublicSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet1RouteTableAssociation89150917"
+          }
+        ],
+        "/SecondarySolutionStack/cache/PublicSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet1DefaultRouteEC6C0182"
+          }
+        ],
+        "/SecondarySolutionStack/cache/PublicSubnet1/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet1EIP74722680"
+          }
+        ],
+        "/SecondarySolutionStack/cache/PublicSubnet1/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet1NATGateway9A4B92C3"
+          }
+        ],
+        "/SecondarySolutionStack/cache/PublicSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet2SubnetC500B3AC"
+          }
+        ],
+        "/SecondarySolutionStack/cache/PublicSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet2RouteTableD0B99D6E"
+          }
+        ],
+        "/SecondarySolutionStack/cache/PublicSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet2RouteTableAssociationF8F60EF2"
+          }
+        ],
+        "/SecondarySolutionStack/cache/PublicSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet2DefaultRoute251EBF0C"
+          }
+        ],
+        "/SecondarySolutionStack/cache/PublicSubnet2/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet2EIP610E2071"
+          }
+        ],
+        "/SecondarySolutionStack/cache/PublicSubnet2/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePublicSubnet2NATGatewayEAFA44BB"
+          }
+        ],
+        "/SecondarySolutionStack/cache/PrivateSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePrivateSubnet1SubnetFD3C77BF"
+          }
+        ],
+        "/SecondarySolutionStack/cache/PrivateSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePrivateSubnet1RouteTable2978E3D3"
+          }
+        ],
+        "/SecondarySolutionStack/cache/PrivateSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePrivateSubnet1RouteTableAssociationB55ECC22"
+          }
+        ],
+        "/SecondarySolutionStack/cache/PrivateSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePrivateSubnet1DefaultRouteA8B9AE3A"
+          }
+        ],
+        "/SecondarySolutionStack/cache/PrivateSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePrivateSubnet2SubnetCCCD7FA2"
+          }
+        ],
+        "/SecondarySolutionStack/cache/PrivateSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePrivateSubnet2RouteTableE74A8DE6"
+          }
+        ],
+        "/SecondarySolutionStack/cache/PrivateSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePrivateSubnet2RouteTableAssociation51C64DCE"
+          }
+        ],
+        "/SecondarySolutionStack/cache/PrivateSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cachePrivateSubnet2DefaultRouteA4ED4C2B"
+          }
+        ],
+        "/SecondarySolutionStack/cache/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cacheIGW6B4784AE"
+          }
+        ],
+        "/SecondarySolutionStack/cache/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cacheVPCGWD533262B"
+          }
+        ],
+        "/SecondarySolutionStack/cache/RestrictDefaultSecurityGroupCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "cacheRestrictDefaultSecurityGroupCustomResourceDCA19BD8"
+          }
+        ],
+        "/SecondarySolutionStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0"
+          }
+        ],
+        "/SecondarySolutionStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Handler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVpcRestrictDefaultSGCustomResourceProviderHandlerDC833E5E"
+          }
+        ],
+        "/SecondarySolutionStack/DLQ/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DLQ581697C4"
+          }
+        ],
+        "/SecondarySolutionStack/DLQAlarm/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DLQAlarm77626DBA"
+          }
+        ],
+        "/SecondarySolutionStack/Queue/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Queue4A7E3555"
+          }
+        ],
+        "/SecondarySolutionStack/SNS/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SNS03120D65"
+          }
+        ],
+        "/SecondarySolutionStack/SNS/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SNSCustomResourcePolicy1A70628D"
+          }
+        ],
+        "/SecondarySolutionStack/AWS679f53fac002430cb0da5b7982bd2287/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+          }
+        ],
+        "/SecondarySolutionStack/AWS679f53fac002430cb0da5b7982bd2287/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWS679f53fac002430cb0da5b7982bd22872D164C4C"
+          }
+        ],
+        "/SecondarySolutionStack/ElastiCacheSubnetGroup": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ElastiCacheSubnetGroup"
+          }
+        ],
+        "/SecondarySolutionStack/SecondaryElastiCacheSecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SecondaryElastiCacheSecurityGroup43D6A83B"
+          }
+        ],
+        "/SecondarySolutionStack/ReplicationGroup": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ReplicationGroup"
+          }
+        ],
+        "/SecondarySolutionStack/CardAuthPrivateSubnet1": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CardAuthPrivateSubnet1"
+          }
+        ],
+        "/SecondarySolutionStack/SecurityGroupId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SecurityGroupId"
+          }
+        ],
+        "/SecondarySolutionStack/QueueARN": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QueueARN"
+          }
+        ],
+        "/SecondarySolutionStack/QueueURL": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "QueueURL"
+          }
+        ],
+        "/SecondarySolutionStack/SQSParameter/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SQSParameter75BC1BCA"
+          }
+        ],
+        "/SecondarySolutionStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/SecondarySolutionStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/SecondarySolutionStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "SecondarySolutionStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}
